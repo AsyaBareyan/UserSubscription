@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - include:
+      file: 001_create_users_table.xml
+      relativeToChangelogFile: true
+  - include:
+      file: 002_create_subscriptions_table.xml
+      relativeToChangelogFile: true
+  - include:
+      file: 003_create_user_subscription_table.xml
+      relativeToChangelogFile: true
+

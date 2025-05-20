@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="create_user_subscription_table" author="AsyaBareyan">
+        <createTable tableName="user_subscription">
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="subscription_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="user_id, subscription_id" tableName="user_subscription" />
+
+        <addForeignKeyConstraint
+                baseColumnNames="user_id"
+                baseTableName="user_subscription"
+                constraintName="fk_user_subscription_user"
+                referencedColumnNames="id"
+                referencedTableName="users"
+                onDelete="CASCADE"
+        />
+
+        <addForeignKeyConstraint
+                baseColumnNames="subscription_id"
+                baseTableName="user_subscription"
+                constraintName="fk_user_subscription_subscription"
+                referencedColumnNames="id"
+                referencedTableName="subscriptions"
+                onDelete="CASCADE"
+        />
+    </changeSet>
+
+</databaseChangeLog>
